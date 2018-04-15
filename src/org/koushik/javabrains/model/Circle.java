@@ -10,7 +10,7 @@ public class Circle {
 	public void setName(String name) {
 		this.name = name;
 		System.out.println("Circle setter  called");
-		throw new RuntimeException();
+		//throw new RuntimeException();
 	}
 	
 	
