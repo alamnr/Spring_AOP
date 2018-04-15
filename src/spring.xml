@@ -13,7 +13,7 @@
 	 	<property name="name" value="Triangle Name"/>
 	 </bean>
 	 <bean name="circle" class="org.koushik.javabrains.model.Circle">
-	 	<property name="name" value="Circle Name"/>
+	 <!-- 	<property name="name" value="Circle Name"/>  -->
 	 </bean>
 	<bean name="shapeService" class="org.koushik.javabrains.service.ShapeService" autowire="byName"/>
 	
