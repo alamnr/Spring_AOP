@@ -17,5 +17,20 @@
 	 </bean>
 	<bean name="shapeService" class="org.koushik.javabrains.service.ShapeService" autowire="byName"/>
 	
-	<bean name="loggingAspect" class="org.koushik.javabrains.aspect.LoggingAspect"/> 
+	<bean name="loggingAspect" class="org.koushik.javabrains.aspect.LoggingAspect"/>
+	
+	<aop:config>
+	
+		<aop:aspect id="loggingAspect" ref="loggingAspect">
+		
+		<aop:around pointcut="execution( * get*())" method="myAroundAdvice"/>
+		
+			<!-- <aop:pointcut id="allGetters" expression ="execution( * get*())"/>
+			<aop:around pointcut-ref="allGetters" method="myAroundAdvice"/>
+		 -->
+		 
+		 
+		</aop:aspect>
+	
+	</aop:config> 
 </beans>
