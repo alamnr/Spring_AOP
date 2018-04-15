@@ -1,28 +1,27 @@
 package org.koushik.javabrains.aspect;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.koushik.javabrains.model.Circle;
 
 @Aspect
 public class LoggingAspect {
 	
-	//@Before("execution(public String org.koushik.javabrains.model.Circle.getName())")
-	//@Before("execution(public String getName())")
-	//@Before("execution(public String get*())")
-	//@Before("execution(public * get*())")
-	//@Before("execution( * get*())")
-	//@Before("execution( * get*(*))")
-	//@Before("execution( * get*(..))")
-	//@Before("execution( * org.koushik.javabrains.model.*.get*(..))")
-	@Before("allGetters() && allCircleMethods()")
-	public void LoggingAdvice(){
-		System.out.println("Advice run. Get Method Called");
+	
+	@Before("allCircleMethods()")
+	public void LoggingAdvice(JoinPoint joinPoint){
+		//System.out.println("Advice run. Get Method Called");
+		//System.out.println(joinPoint.toString());
+		/*System.out.println(joinPoint.getTarget());
+		Circle  circle = (Circle)joinPoint.getTarget();*/
 	}
 	
-	@Before("allGetters()")
-	public void secondAdvice(){
-		System.out.println("Second Advice executed.");
+	//@Before("args(String)")
+	@Before("args(name)")
+	public void stringArgumentMethods(String name){
+		System.out.println("A method that takes string arguments has been calle. The value is- "+name);
 	}
 	
 	@Pointcut("execution( * get*())")
@@ -30,17 +29,7 @@ public class LoggingAspect {
 		
 	}
 	
-	//@Pointcut("execution(* * org.koushik.javabrains.model.Circle*(..))")
-	@Pointcut("within(org.koushik.javabrains.model.Circle)")
-	public void allCircleMethodes(){
-		
-	}
 	
-	/*@Pointcut("execution(* * org.koushik.javabrains.model.Circle.*(..))")
-	public void allCircleMethods(){}*/
-	
-	
-	//@Pointcut("within(org.koushik.javabrains.model..*)")
 	@Pointcut("within(org.koushik.javabrains.model.Circle)")
 	public void allCircleMethods(){}
 	
