@@ -46,7 +46,8 @@ public class LoggingAspect {
 		System.out.println("An exception has been thrown.  " +  ex);
 	}
 	
-	@Around("allGetters()")
+	//@Around("allGetters()")
+	@Around("@annotation(org.koushik.javabrains.aspect.Loggable)")
 	public Object myAroundAdvice(ProceedingJoinPoint proceedingJoinPoint){
 		
 		Object returnValue=null;
@@ -70,6 +71,9 @@ public class LoggingAspect {
 	public void allGetters(){
 		
 	}
+	
+	//@Pointcut("execution(* org.koushik.javabrains.service.*.*(..))")
+	//@Pointcut("execution(* org.koushik.javabrains.service.*Service.*(..))")
 	
 	
 	@Pointcut("within(org.koushik.javabrains.model.Circle)")
