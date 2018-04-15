@@ -15,7 +15,7 @@ public class LoggingAspect {
 	//@Before("execution( * get*(*))")
 	//@Before("execution( * get*(..))")
 	//@Before("execution( * org.koushik.javabrains.model.*.get*(..))")
-	@Before("allGetters()")
+	@Before("allGetters() && allCircleMethods()")
 	public void LoggingAdvice(){
 		System.out.println("Advice run. Get Method Called");
 	}
@@ -30,5 +30,21 @@ public class LoggingAspect {
 		
 	}
 	
-
+	//@Pointcut("execution(* * org.koushik.javabrains.model.Circle*(..))")
+	@Pointcut("within(org.koushik.javabrains.model.Circle)")
+	public void allCircleMethodes(){
+		
+	}
+	
+	/*@Pointcut("execution(* * org.koushik.javabrains.model.Circle.*(..))")
+	public void allCircleMethods(){}*/
+	
+	
+	//@Pointcut("within(org.koushik.javabrains.model..*)")
+	@Pointcut("within(org.koushik.javabrains.model.Circle)")
+	public void allCircleMethods(){}
+	
+	
 }
+
+
